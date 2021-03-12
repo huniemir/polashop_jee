@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/templates/page-template.xhtml">
+
+		<ui:define name="pageTitle">
+		Historia transakcji
+		</ui:define>
+		<ui:define name="pageContent">
+			<h:form>
+					<h:panelGrid columns="3" cellpadding="5">
+						<h:outputLabel value="Numer transakcji:" />
+						<h:inputText value="#{lazyView.idtransaction}" />
+						<h:commandButton value="Szukaj" update="historyTable" />
+					</h:panelGrid>
+			</h:form>
+		
+			<h:messages id="msg" />
+		
+			<h:form id="form-table" style="margin-bottom:1em;">
+		
+				<p:dataTable value="#{lazyView.lazyModel}" var="h" paginator="true" rows="10"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="5,10,15"
+                     id="historyTable" lazy="true">
+		
+					<p:column sortBy="#{h.idtransaction}">
+						<f:facet name="header">
+							<h:outputText value="Numer transakcji" />
+						</f:facet>
+						<h:outputText value="#{h.idtransaction}" />
+					</p:column>
+					<p:column sortBy="#{h.date}">
+						
+						<f:facet name="header">
+							<h:outputText value="Data" />
+						</f:facet>
+						<h:outputText value="#{h.date}" />
+					</p:column>
+		
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Stan" />
+						</f:facet>
+						<h:outputText value="#{h.isPaidFor}"/><br></br>
+						<h:outputText value="#{h.isSend}"/>
+							
+					</p:column>
+					
+					<p:column sortBy="#{h.price}">
+						<f:facet name="header">
+							<h:outputText value="Cena" />
+						</f:facet>
+						<h:outputText value="#{h.price}zł"/>
+							
+					</p:column>
+					
+				</p:dataTable>
+				
+			</h:form>
+		</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/templates/page-template.xhtml">
+
+		<ui:define name="pageTitle">
+		Nowe dane przesyłki
+		</ui:define>
+		<ui:define name="pageContent">
+
+		
+		<h:messages id="msg" />
+		
+		<h:form rendered="#{shippingDetailBB.shippingDetail != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+
+				<h:outputLabel for="p-name" value="imię:" />
+				<h:inputText id="p-name" value="#{shippingDetailBB.shippingDetail.name}"
+					required="true" requiredMessage="Podaj imię"
+					validatorMessage="co najwyżej 45 znaków">
+					<f:validateLength maximum="45" />
+				</h:inputText>
+				<h:message for="p-name" display="icon"/>
+
+				<h:outputLabel for="p-surname" value="nazwisko:" />
+				<h:inputText id="p-surname" value="#{shippingDetailBB.shippingDetail.surname}"
+					required="true" requiredMessage="podaj nazwisko"
+					validatorMessage="co najwyżej 45 znaków">
+					<f:validateLength maximum="45" />
+				</h:inputText>
+				<h:message for="p-surname" display="icon"/>
+				
+				<h:outputLabel for="p-town" value="miasto:" />
+				<h:inputText id="p-town" value="#{shippingDetailBB.shippingDetail.town}"
+					required="true" requiredMessage="podaj miasto"
+					validatorMessage="co najwyżej 45 znaków">
+					<f:validateLength maximum="45" />
+				</h:inputText>
+				<h:message for="p-town" display="icon"/>
+				
+				<h:outputLabel for="p-street" value="ulica:" />
+				<h:inputText id="p-street" value="#{shippingDetailBB.shippingDetail.street}"
+					required="true" requiredMessage="podaj ulice"
+					validatorMessage="co najwyżej 45 znaków">
+					<f:validateLength maximum="45" />
+				</h:inputText>
+				<h:message for="p-street" display="icon"/>
+				
+				<h:outputLabel for="p-flat" value="Nr mieszkania:" />
+				<h:inputText id="p-flat" value="#{shippingDetailBB.shippingDetail.flat}"
+					required="true" requiredMessage="podaj nr mieszkania"
+					validatorMessage="co najwyżej 3 znaki">
+					<f:validateLength maximum="3" />
+				</h:inputText>
+				<h:message for="p-flat" display="icon"/>
+				
+				<h:outputLabel for="p-zipcode" value="kod pocztowy:" />
+				<h:inputText id="p-zipcode" value="#{shippingDetailBB.shippingDetail.zipcode}"
+					required="true" requiredMessage="podaj nr mieszkania"
+					validatorMessage="format kodu pocztowego">
+					<f:validateRegex pattern = "[0-9][0-9]-[0-9][0-9][0-9]" />
+				</h:inputText>
+				<h:message for="p-zipcode" display="icon"/>
+				
+				<h:outputLabel for="p-telephoneNumber" value="nr telefonu:" />
+				<h:inputText id="p-telephoneNumber" value="#{shippingDetailBB.shippingDetail.telephoneNumber}"
+					required="true" requiredMessage="podaj numer telefonu"
+					validatorMessage="9 cyfr">
+					<f:validateLongRange minimum = "100000000" maximum = "999999999" />
+				</h:inputText>
+				<h:message for="p-telephoneNumber" display="icon"/>
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<h:commandButton value="Zapisz" action="#{shippingDetailBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+				
+			
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

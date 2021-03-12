@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/templates/page-template.xhtml">
+
+		<ui:define name="pageTitle">
+		Oferta
+		</ui:define>
+		<ui:define name="pageContent">
+
+				<h:form>
+					<h:panelGrid columns="3" cellpadding="5">
+						<h:outputLabel value="nazwa:" />
+						<h:inputText value="#{productListBB.name}" />
+						<h:commandButton value="Szukaj" update="form-table" />
+					</h:panelGrid>
+				</h:form>
+		
+	
+		
+			<h:messages id="msg" />
+		
+			<h:form id="form-table" style="margin-bottom:1em;">
+		
+				<p:dataTable value="#{productListBB.list}" var="p" rows="5"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records">
+		
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Nazwa" />
+						</f:facet>
+						<h:outputText value="#{p.name}" />
+					</p:column>
+					<p:column>
+						
+						<f:facet name="header">
+							<h:outputText value="Cena" />
+						</f:facet>
+						<h:outputText value="#{p.price}" />
+					</p:column>
+		
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Opis" />
+						</f:facet>
+						<h:outputText value="#{p.description}"/>
+							
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="opcje" />
+						</f:facet>
+		
+						<h:commandButton value="Dodaj do koszyka"
+							action="#{productListBB.add(p)}">
+							<f:ajax execute="@form" render="msg" />
+						</h:commandButton>
+						
+		
+					</p:column>
+		
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+</ui:composition>
+</html>

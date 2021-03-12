@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+	<h:head>
+		<title>Polashop - Twój sklep internetowy</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<h:outputStylesheet name="css/main.css" library="template" />
+		<noscript><h:outputStylesheet name="css/noscript.css" library="template" /></noscript>
+	</h:head>
+	<h:body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo"><strong>Polashop</strong> <span>Twój sklep internetowy</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<ui:include src="/templates/menu-template.xhtml" />
+
+				<!-- Main -->
+					<div id="main" class="alt">
+
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<ui:insert name="content"></ui:insert>
+								</div>
+							
+							</section>
+
+					</div>
+
+				
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							
+							<ul class="copyright">
+								<li>Stworzone przez Marka Rybczyńskiego. Żadnych praw zastrzeżonych</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="#{resource['template:js/jquery.min.js']}"></script>
+			<script src="#{resource['template:js/jquery.scrolly.min.js']}"></script>
+			<script src="#{resource['template:js/jquery.scrollex.min.js']}"></script>
+			<script src="#{resource['template:js/browser.min.js']}"></script>
+			<script src="#{resource['template:js/breakpoints.min.js']}"></script>
+			<script src="#{resource['template:js/util.js']}"></script>
+			<script src="#{resource['template:js/main.js']}"></script>
+
+	</h:body>
+</html>

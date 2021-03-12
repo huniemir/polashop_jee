@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/templates/page-template.xhtml">
+
+		<ui:define name="pageTitle">
+		Koszyk
+		</ui:define>
+		<ui:define name="pageContent">
+
+		
+			<h:messages id="msg" />
+		
+			<h:form id="form-table" style="margin-bottom:1em;">
+		
+				<h:dataTable value="#{shopcartBB.show()}" var="p">
+		
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Nazwa" />
+						</f:facet>
+						<h:outputText value="#{p.name}" />
+					</h:column>
+					<h:column>
+						
+						<f:facet name="header">
+							<h:outputText value="Cena" />
+						</f:facet>
+						<h:outputText value="#{p.price}" />
+					</h:column>
+		
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Ilość" />
+						</f:facet>
+						<h:outputText value="#{p.amount}"/>
+							
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="opcje" />
+						</f:facet>
+		
+						<h:commandButton value="Zwiększ ilość"
+							action="#{shopcartBB.increaseAmount(p)}" update="@form">
+							<f:ajax execute="@form" render="msg form-table" />
+						</h:commandButton>
+						<h:commandButton value="Usuń z koszyka"
+							action="#{shopcartBB.delete(p)}"  update="@form">
+							<f:ajax execute="@form" render="msg form-table" />
+						</h:commandButton>
+		
+					</h:column>
+		
+				</h:dataTable>
+				
+			</h:form>
+			<h3>W sumie do zapłaty: </h3>
+				<h:outputText style="font-size: 25px;" value="#{shopcartBB.summary}zł"/><br></br>
+				<p:button value="Zapłać" outcome="buy" />
+		</ui:define>
+</ui:composition>
+</html>
