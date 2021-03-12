@@ -29,7 +29,7 @@ public class ShippingDetail implements Serializable {
 	private String surname;
 
 	@Column(name="telephone_number")
-	private int telephoneNumber;
+	private Integer telephoneNumber;
 
 	private String town;
 

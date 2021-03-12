@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import polashop.entities.Product;
 
@@ -92,6 +93,51 @@ public class ProductDAO {
 		}
 
 		return list;
+	}
+	
+	public List<Product> getLazyList(int first, int max) {
+		List<Product> list = null;
+
+		// 1. Build query string with parameters
+		String select = "select p ";
+		String from = "from Product p ";
+
+		
+		Query query = em.createQuery(select + from);
+
+		// 3. Set configured parameters
+		query.setMaxResults(max);
+		query.setFirstResult(first);
+
+		// ... other parameters ... 
+
+		// 4. Execute query and retrieve list of Person objects
+		try {
+			list = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	public int getRowsNumber() {
+		int rowsNumber=0;
+		String select = "select count(p) ";
+		String from = "from Product p ";
+
+		
+		TypedQuery<Long> query = (TypedQuery<Long>)em.createQuery(select + from);
+		
+		// 4. Execute query and retrieve list of Person objects
+		try {
+			rowsNumber = query.getSingleResult().intValue();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return rowsNumber;
 	}
 
 }
